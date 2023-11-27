@@ -1,0 +1,41 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendaciones de Películas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Recomendaciones de Películas</h1>
+        <form method="post" action="/" class="user-form">
+            <label for="user_id">Ingrese el UserID:</label>
+            <input type="text" id="user_id" name="user_id" required>
+            <button type="submit">Buscar</button>
+        </form>
+
+        {% if resultados %}
+            <div class="result-container">
+                <h2>Resultados:</h2>
+                {% for resultado in resultados %}
+                    <div class="user-result">
+                        <h3>Usuario ID: {{ resultado.user_id }} - Distancia: {{ resultado.distancia }}</h3>
+                        <ul class="movie-list">
+                            {% for movie_info in resultado.movie_info %}
+                                <li class="movie-info">
+                                    Movie ID: {{ movie_info.movie_id }},
+                                    Calificación Usuario Buscado: {{ movie_info.calificacion_usuario_buscado }},
+                                    Calificación Usuario Otro: {{ movie_info.calificacion_usuario_otro }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
