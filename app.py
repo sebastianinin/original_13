@@ -69,7 +69,7 @@ def index():
         elapsed_time = end_time - start_time  # Cálculo del tiempo transcurrido
         print(f'Tiempo de ejecución: {elapsed_time} segundos')
 
-        return render_template('index.html', resultados=resultados)
+        return render_template('templates/index.html', resultados=resultados)
 
 
 
@@ -77,4 +77,3 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
-
