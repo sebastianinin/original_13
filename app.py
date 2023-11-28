@@ -5,6 +5,7 @@ import time
 import numpy as np
 
 app = Flask(__name__)
+app = Flask(__name__, template_folder='templates', static_folder='static')
 
 def extraer_datos_usuarios(archivo_csv):
     datos_usuarios = {}
@@ -70,7 +71,10 @@ def index():
 
         return render_template('index.html', resultados=resultados)
 
+
+
     return render_template('index.html', resultados=None)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
+
